@@ -54,7 +54,16 @@ const fetchManyProducts = async function(req, res){
 }
 
 const fetchOneProduct = async (req, res)=>{
-
+  try {
+    const productRecord = await Product
+      .query()
+      .findById(req.params._id)
+  } catch (err) {
+    
+    const errorMessage = err.toString()
+    res.status(500).send(errorMessage)
+    
+  } 
 }
 
 const createOneProduct = function(req, res){
