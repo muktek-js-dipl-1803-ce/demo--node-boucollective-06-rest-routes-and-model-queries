@@ -4,12 +4,10 @@ const Product = require('../models/Product.js')
 
 const apiRouter  = Router()
 
-// ** B.2 Model Queries **
-
 const showRouteListing = (req, res)=>{
   res.json({
-    '/api/users' : 'Show users',
-    '/api/messages' : 'Show messages'
+    '/api/products' : 'products',
+    '/api/vendors' : 'vendors'
   })
 }
 
@@ -41,6 +39,7 @@ const fetchOneVendor = (req, res)=>{
 
 }
 
+// B.1.iii - create `fetchManyProducts` function
 const fetchManyProducts = async function(req, res){
   try {
     const recordsWithCompanies = await Product.query()
@@ -53,6 +52,7 @@ const fetchManyProducts = async function(req, res){
   }
 }
 
+// B.1.iv - create `fetchOneProduct` function
 const fetchOneProduct = async (req, res)=>{
   try {
     const productRecord = await Product
@@ -61,13 +61,13 @@ const fetchOneProduct = async (req, res)=>{
   } catch (err) {
     
     const errorMessage = err.toString()
-    res.status(500).send(errorMessage)
-    
+    res.status(500).send(errorMessage)    
   } 
 }
 
+
+// B.2.ii - create `createOneProduct` function
 const createOneProduct = function(req, res){
-  // ** A.3 + B.3 req.body **
   //       body parser + express puts incoming
   //       ContentType application/json
   //       data on req.body
@@ -81,6 +81,7 @@ const createOneProduct = function(req, res){
     })
 }
 
+// B.3.ii - create `editOneProduct` function
 const editOneProduct = (req, res)=>{
   Product
    .query()
@@ -90,6 +91,7 @@ const editOneProduct = (req, res)=>{
    })
 }
 
+// B.4.ii - create `deleteOneProduct` function
 const deleteOneProduct = (req, res)=>{
   Product.query()
     .deleteById(req.params._id)
@@ -102,18 +104,17 @@ const deleteOneProduct = (req, res)=>{
 apiRouter.get('/', showRouteListing)
 
 
-// ** B.1 REST ROUTES **
 apiRouter
   .get('/vendors', fetchManyVendors)
   .get('/vendors/:_id', fetchOneVendor)
 
-
+// ** B.2 Model Queries **
 apiRouter
-  .get('/products', fetchManyProducts)
-  .get('/products/:_id', fetchOneProduct)
-  .post('/products', createOneProduct)
-  .put('/products/:_id', editOneProduct )
-  .delete('/products/:_id', deleteOneProduct)
+  .get('/products', fetchManyProducts)        // ** B.1.i GET route, fetch-many **
+  .get('/products/:_id', fetchOneProduct)     // ** B.1.i GET route, fetch-one  **
+  .post('/products', createOneProduct).       // ** B.2.i POST route, create-one * *
+  .put('/products/:_id', editOneProduct ).    // ** B.3.i EDIT route, edit-one  **
+  .delete('/products/:_id', deleteOneProduct) // ** B.4.i DELETE route, delete-one **
 
 
 module.exports = apiRouter
