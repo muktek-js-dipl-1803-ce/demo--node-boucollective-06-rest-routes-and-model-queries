@@ -24,8 +24,8 @@ npm install --save body-parser
   1. Create GET Routes
     i. : declare fetch-many GET route
     ii. : declare fetch-one GET route
-    iii. : create `fetchMany` function
-    iv. : create `fetchOne` function
+    iii. : create `fetchManyProduct` function
+    iv. : create `fetchOneProduct` function
 
   2. Create POST Route
     i. : declare POST route
