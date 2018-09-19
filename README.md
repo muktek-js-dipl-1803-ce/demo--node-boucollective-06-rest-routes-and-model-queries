@@ -20,6 +20,7 @@ npm install --save body-parser
   
 
 **(B)** `/src/routes/apiRouter.js`
+```
   1. Create GET Routes
     i. : declare fetch-many GET route
     ii. : declare fetch-one GET route
@@ -37,4 +38,4 @@ npm install --save body-parser
   4. Create DELETE Route
     i. : declare DELETE route   
     ii. : create `deleteOneProduct` function
-  
+```
