@@ -19,7 +19,7 @@ npm install --save body-parser
   2. configure with express app
   
 
-**(B)** `/src/routes/apiRouter.js`
+**(B)** [`/src/routes/apiRouter.js`](src/routes/apiRouter.js)
 ```
   1. Create GET Routes
     i. : declare fetch-many GET route
